@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
@@ -59,10 +61,32 @@ public class UserMapperTest {
 
     }
 
+    @Test
+    public void testLeGuanSuo(){
+     /*   User user = new User();
+        user.setName("张无忌");
+        user.setEmail("wwwww.@qq.com");
+        user.setAge(20);
+        userMapper.insert(user);*/
+
+        //查询
+        User user = userMapper.selectById(1494502153706840068L);
+        //修改数据
+        user.setName("Helen Yao");
+        user.setEmail("helen@qq.com");
+        user.setVersion(user.getVersion()-1);
+        //执行更新
+        userMapper.updateById(user);
 
 
+    }
 
+    //多个ID的批量查询
+    @Test
+    public void testSelectByIdBatch(){
+        List<User> users = userMapper.selectBatchIds(Arrays.asList(1l, 2l, 3l));
 
+    }
 
 
 
