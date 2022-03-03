@@ -1,5 +1,8 @@
 package com.mybatis.mybatisplusdemo;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mybatis.mybatisplusdemo.dao.UserMapper;
 import com.mybatis.mybatisplusdemo.entity.User;
 import org.junit.jupiter.api.Test;
@@ -89,8 +92,47 @@ public class UserMapperTest {
     }
 
 
+    @Test
+    public void testSanJiao(){
 
+        for (int i = 0; i <5 ; i++) {
+            for (int j = 0; j <5-i ; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 0; k <i*2-1 ; k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
 
+    }
 
+    @Test
+    public void testPage(){
+        Page<User> page = new Page<>(1,3);
+        userMapper.selectPage(page, null);
+        System.out.println("当前页："+page.getCurrent());
+        System.out.println("总页数："+page.getPages());
+        System.out.println("当前页List数据集合："+page.getRecords());
+        System.out.println("总记录数："+page.getTotal());
+        System.out.println("每页显示记录数："+page.getSize());
+        System.out.println("是否有下一页："+page.hasNext());
+        System.out.println("是否有上一页："+page.hasPrevious());
+
+    }
+
+    @Test
+    public void testDelete(){
+        userMapper.deleteById(1494501649593499650l);
+    }
+
+    /**
+     * 条件查询
+     */
+    @Test
+    public void testChoose(){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+
+    }
 
 }
